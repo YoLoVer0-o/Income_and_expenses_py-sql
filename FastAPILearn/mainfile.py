@@ -5,8 +5,8 @@ from pydantic import BaseModel
 from bson.objectid import ObjectId
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
-import jwt
 from typing import Annotated
+import jwt
 
 app = FastAPI()
 
@@ -130,8 +130,8 @@ async def create_user(users: Users):
 
 
 # Get user by ID
-@app.get("/users/{user_id}", tags=["user"])
-async def get_user(user_id: str):
+@app.get("/users/user_id?{user_id}", tags=["user"])
+async def get_user(user_id: str ):
     user_info = collection.find_one({"_id": ObjectId(user_id)})
     if user_info:
         return {
